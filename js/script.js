@@ -2,19 +2,17 @@
 const bookSearch = ()=>{
 const search = document.getElementById('search');
 const searchText =search.value;
-
 const ulr = (`https://openlibrary.org/search.json?q=${searchText}`);
     fetch(ulr)
     .then(res => res.json())
     .then(data =>displayTotalResult(data)).catch(error =>{
     console.log(error)})
-
     fetch(ulr)
     .then(res => res.json())
     .then(data => displayBook(data.docs)).catch(error =>{
     console.log(error)})
     if(searchText === ''){
-    toggleHiddenSpinner() 
+        toggleHiddenSpinner() 
     }else{
         toggleSpinner()
     }
@@ -35,12 +33,11 @@ const toggleHiddenSpinner=()=>{
 // display total result for the search 
 const displayTotalResult = total=>{
     const search = document.getElementById('search')
-    
     const totalResult =document.getElementById('total-result');
     totalResult.textContent ='';
     const div2 = document.createElement('div')
     div2.innerHTML= `
-    <h3 class="text-secondary" class=""><span >${total.num_found}</span> <span> result found for ${search.value}</span></h3> `
+    <h3 class="text-secondary" class=""><span >${total.num_found}</span> <span> result found for ${search.value?search.value:'None'}</span></h3> `
     totalResult.appendChild(div2)
     search.value ='';
 }
@@ -53,7 +50,6 @@ const displayBook=books=>{
         books.forEach( des =>{
         const div = document.createElement('div')
         div.classList.add('col')
-        
         div.innerHTML = `
             <div class="card  h-100">
                 <img id='img-default' src='https://covers.openlibrary.org/b/id/${des.cover_i ?des.cover_i:10909258}-M.jpg' class="card-img-top' alt="">
@@ -67,12 +63,11 @@ const displayBook=books=>{
         `
         bookCard.appendChild(div)
         toggleHiddenSpinner();
-        
         })
-        
 }
 
 /* Note: hi I will appreciate if you can give some suggesions for below questions
 1. How can I use my deafult image from my computer in this situation? I tried tons of things 
-2. 
+
+#I have some toggle issue I will solve it later 
  */
