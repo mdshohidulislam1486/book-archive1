@@ -9,13 +9,24 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="image/favicon/images.png" type="image/x-icon">
     <title>Book Archive</title>
 </head>
 <body class="bg-dark">
-    <h1 class="text-center text-light">This is the test</h1>
+    <header>
+        <nav class="navbar navbar-light bg-secondary">
+            <div class="container-fluid">
+              <a class="navbar-brand fw-bold text-light" href="">
+                <i class="fas fs-2 fa-book text-dark"></i>
+                Book Archive
+              </a>
+            </div>
+          </nav>
+    </header>
 
     <!-- search button section  -->
     <section class="search-button">
+        <h2 class="text-light text-center fst-italic mt-5 pb-3">Find your favourite book here</h2>
         <div class="input-group mb-3 w-50 mx-auto">
             <input id='search' type="text" class="form-control" placeholder="Search" aria-label="" aria-describedby="basic-addon2">
             <span onclick="bookSearch()" class="input-group-text" id="search-btn"><i class="fas fa-search"></i></span>

@@ -1,10 +1,9 @@
 // featchin data from API 
 const bookSearch = ()=>{
 const search = document.getElementById('search');
-const searchText =search.value
-search.value ='';
-const ulr = (`https://openlibrary.org/search.json?q=${searchText}`);
+const searchText =search.value;
 
+const ulr = (`https://openlibrary.org/search.json?q=${searchText}`);
     fetch(ulr)
     .then(res => res.json())
     .then(data =>displayTotalResult(data)).catch(error =>{
@@ -17,15 +16,17 @@ const ulr = (`https://openlibrary.org/search.json?q=${searchText}`);
 }
 
 const displayTotalResult = total=>{
+    const search = document.getElementById('search')
+    
     const totalResult =document.getElementById('total-result');
     totalResult.textContent ='';
     const div2 = document.createElement('div')
     div2.innerHTML= `
-    <h3 class="text-light" class=""><span>Number of result found </span><span >${total.num_found}</span></h3> `
+    <h3 class="text-secondary" class=""><span >${total.num_found}</span> <span> result found for ${search.value}</span></h3> `
     totalResult.appendChild(div2)
+    search.value ='';
 
 }
-
 
 const displayBook=books=>{
     
@@ -39,7 +40,7 @@ const displayBook=books=>{
             <div class="card  h-100">
                 <img id='img-default' src='https://covers.openlibrary.org/b/id/${des.cover_i ?des.cover_i:10909258}-M.jpg' class="card-img-top' alt="">
             <div class="card-body">
-                    <h5 class="card-title">${des.title}</h5>
+                    <h5 class="card-title text-uppercase">${des.title}</h5>
                     <p><span>Author: </span>${des.author_name.slice(0,1)?des.author_name:"Not found"}</p>
                     <p><span>Publisher: </span>${des.publisher.slice(0, 1)}</p>
                     <p><span>Publication year: </span>${des.first_publish_year}</p>
