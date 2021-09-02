@@ -2,36 +2,48 @@
 const bookSearch = ()=>{
 const search = document.getElementById('search');
 const searchText =search.value
-console.log(searchText)
+search.value ='';
+
 const ulr = (`https://openlibrary.org/search.json?q=${searchText}`)
 fetch(ulr)
 .then(res => res.json())
 .then(data => displayBook(data.docs)).catch(error =>{
+    console.log(error)})
+
+fetch(ulr)
+.then(res => res.json())
+.then(data =>displayTotalResult(data)).catch(error =>{
     console.log(error)
-    
 })
 }
 
+const displayTotalResult = total=>{
+const totalResult =document.getElementById('total-result');
+totalResult.textContent ='';
+const div2 = document.createElement('div')
+div2.innerHTML= `
+<h3 class="text-light" class=""><span>Number of result found </span>${total.num_found}</h3>
+`
+totalResult.appendChild(div2)
+}
 
 
 const displayBook=books=>{
 const bookCard = document.getElementById('disply-card')
 bookCard.textContent ='';
-console.log(books.num_found)/* To get this yoiu have to call only data on fetch */
-books.forEach( author =>{
-console.log(author.author_name[0])
-console.log(author.title)
-console.log(author.publisher[0])
-console.log(author.first_publish_year)
+books.forEach( des =>{
 const div = document.createElement('div')
 div.classList.add('col')
 
+
 div.innerHTML = `
-    <div class="card">
-        <img src="" class="card-img-top" alt="...">
+    <div class="card  h-100">
+        <img src='https://covers.openlibrary.org/b/id/${des.cover_i}-M.jpg' class="card-img-top" alt="">
      <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <h5 class="card-title">${des.title}</h5>
+            <p><span>Author: </span>${(des.author_name).slice(0,1)}</p>
+            <p><span>Publisher: </span>${(des.publisher).slice(0, 1)}</p>
+            <p><span>Publication year: </span>${des.first_publish_year}</p>
      </div>
     </div>
 `
