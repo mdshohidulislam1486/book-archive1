@@ -28,26 +28,26 @@ const displayTotalResult = total=>{
 
 
 const displayBook=books=>{
-    const bookCard = document.getElementById('disply-card')
-    bookCard.textContent ='';
-    books.forEach( des =>{
-    const div = document.createElement('div')
-    div.classList.add('col')
-    div.innerHTML = `
-        <div class="card  h-100">
-            <img src='https://covers.openlibrary.org/b/id/${des.cover_i}-M.jpg' class="card-img-top" alt="">
-        <div class="card-body">
-                <h5 class="card-title">${des.title}</h5>
-                <p><span>Author: </span>${des.author_name[0]}</p>
-                <p><span>Publisher: </span>${des.publisher[0]}</p>
-                <p><span>Publication year: </span>${des.first_publish_year}</p>
-        </div>
-        </div>
-    `
-    bookCard.appendChild(div)
-    })
-
     
-
+        const bookCard = document.getElementById('disply-card')
+        bookCard.textContent ='';
+        books.forEach( des =>{
+        const div = document.createElement('div')
+        div.classList.add('col')
+        
+        div.innerHTML = `
+            <div class="card  h-100">
+                <img id='img-default' src='https://covers.openlibrary.org/b/id/${des.cover_i ?des.cover_i:10909258}-M.jpg' class="card-img-top' alt="">
+            <div class="card-body">
+                    <h5 class="card-title">${des.title}</h5>
+                    <p><span>Author: </span>${des.author_name.slice(0,1)?des.author_name:"Not found"}</p>
+                    <p><span>Publisher: </span>${des.publisher.slice(0, 1)}</p>
+                    <p><span>Publication year: </span>${des.first_publish_year}</p>
+            </div>
+            </div>
+        `
+        bookCard.appendChild(div)
+        
+        })
 
 }
