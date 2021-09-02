@@ -3,7 +3,7 @@ const bookSearch = ()=>{
 const search = document.getElementById('search');
 const searchText =search.value
 console.log(searchText)
-const ulr = (`http://openlibrary.org/search.json?q=${searchText}`)
+const ulr = (`https://openlibrary.org/search.json?q=${searchText}`)
 fetch(ulr)
 .then(res => res.json())
 .then(data => displayBook(data.docs)).catch(error =>{
