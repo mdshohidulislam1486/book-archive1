@@ -73,6 +73,6 @@ const displayBook=books=>{
 }
 
 /* Note: hi I will appreciate if you can give some suggesions for below questions
-1. How can I use my deafult image from my computer in this situation? I tried tons of things
+1. How can I use my deafult image from my computer in this situation? I tried tons of things 
 2. 
  */
